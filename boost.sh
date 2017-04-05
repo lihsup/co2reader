@@ -1,12 +1,12 @@
 #!/bin/bash
 
 #Get parameters
-day1=$1
-day2=$2
-direction=$3
-resid=$4
+cname=$1
+
 
 docker build -t co2reader:0.0.1 .
-docker run -d --rm co2reader:0.0.1 $day1 $day2 $direction $resid
-#docker rmi co2reader:0.0.1
 docker rmi $(docker images -f "dangling=true" -q)
+docker run -dit --name $cname co2reader:0.0.1 
+#docker run -dit co2reader:0.0.1 $day1 $day2 $direction $resid 
+#docker rmi co2reader:0.0.1
+#docker exec -d penguin4 ./run.sh 11 12 north 9087
